@@ -1,5 +1,5 @@
 import createHttpError from 'http-errors';
-import Note from '../models/note.js';
+import { Note } from '../models/note.js';
 
 export async function getAllNotes(req, res) {
   const { page = 1, perPage = 10, tag, search } = req.query;
