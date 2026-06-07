@@ -24,7 +24,9 @@ export async function createNote(req, res) {
 
 export async function updateNote(req, res) {
   const { noteId } = req.params;
-  const note = await Note.findByIdAndUpdate(noteId, req.body, { new: true });
+  const note = await Note.findByIdAndUpdate(noteId, req.body, {
+    returnDocument: 'after',
+  });
 
   if (!note) {
     throw createHttpError(404, 'Note not found');
