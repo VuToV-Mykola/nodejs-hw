@@ -9,6 +9,10 @@ export async function authenticate(req, res, next) {
     return next(createHttpError(401, 'Missing access token'));
   }
 
+  if (!sessionId) {
+    return next(createHttpError(401, 'Missing session id'));
+  }
+
   const session = await Session.findOne({ _id: sessionId, accessToken });
   if (!session) {
     return next(createHttpError(401, 'Session not found'));
